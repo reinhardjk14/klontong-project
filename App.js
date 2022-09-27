@@ -6,42 +6,18 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import React, { useEffect } from 'react';
+import { Provider } from 'react-redux';
+import store from './store';
+import ItemsPage from './screens/ItemsPage';
 
 const App = () => {
+
   return (
-    <View style={[styles.backgroundColor]}>
-      <StatusBar />
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Klontong Shop</Text>
-      </View>
-    </View>
+    <Provider store={store}>
+      <ItemsPage />
+    </Provider>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-});
 
 export default App;
