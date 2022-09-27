@@ -7,27 +7,22 @@ import {
   Button,
   TouchableOpacity,
 } from 'react-native';
-// import {useNavigation} from '@react-navigation/core';
-// import {GestureDetector, Gesture} from 'react-native-gesture-handler';
+import {useNavigation} from '@react-navigation/core';
+import {GestureDetector, Gesture} from 'react-native-gesture-handler';
 
-export default function ItemCard({snack}) {
-  // const navigation = useNavigation();/
+const ItemCard = ({snack}) => {
+  const navigation = useNavigation();
   let itemPoster = snack.image;
 
-  // const tapToDetails = Gesture.Tap().onStart(() => {
-  //   navigation.navigate('Detail', {
-  //     id: item.id,
-  //   });
-  // });
+  const tapToDetails = Gesture.Tap().onStart(() => {
+    navigation.navigate('DetailPage', {
+      id: snack.id,
+    });
+    // navigation.navigate('Detail');
+  });
 
   return (
     <View style={styles.perItem}>
-      {/* <GestureDetector gesture={tapToDetails}> */}
-        <TouchableOpacity>
-          <Image style={styles.image} source={{uri: `${itemPoster}`}} />
-        </TouchableOpacity>
-      {/* </GestureDetector> */}
-
       <Text
         style={{
           fontWeight: 'bold',
@@ -36,9 +31,14 @@ export default function ItemCard({snack}) {
         }}>
         {snack.name}
       </Text>
+      <GestureDetector gesture={tapToDetails}>
+        <TouchableOpacity>
+          <Image style={styles.image} source={{uri: `${itemPoster}`}} />
+        </TouchableOpacity>
+      </GestureDetector>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   image: {
@@ -52,3 +52,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default ItemCard;
